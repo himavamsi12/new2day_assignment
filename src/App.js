@@ -1,20 +1,22 @@
 import {Component} from 'react'
 import {BrowserRouter, Route, Switch,} from 'react-router-dom'
 import LoginForm from './components/LoginForm'
+import WelcomePage from './components/WelcomePage'
+import ThankYouPage from './components/ThankYouPage'
 
 import './App.css'
 
-class App extends Component {
+const App = () => (
 
-  render() {
-    return (
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/login" component={LoginForm} />
+      <Switch>
+          <Route exact path='/' component={WelcomePage}/>
+          <Route exact path='/login' component={LoginForm}/>
+          <Route exact path='/thankyou' component={ThankYouPage}/>
         </Switch>
-        </BrowserRouter>
-    )
-  }
-}
+      </BrowserRouter>
+    
+  
+)
 
 export default App

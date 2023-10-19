@@ -1,4 +1,6 @@
 import {Component} from 'react'
+import {FiSearch} from 'react-icons/fi'
+import { useHistory, Redirect } from "react-router-dom"
 
 import {
   AppContainer,
@@ -9,6 +11,8 @@ import {
   InputLabel,
   UserInput,
   Paragraph,
+  Break,
+  con,
 
 } from './styledComponents'
 
@@ -26,20 +30,20 @@ class LoginForm extends Component {
   }
 
 
-
-
   onSubmitFailure = errorMsg => {
     this.setState({showSubmitError: true, errorMsg})
   }
 
-  submitForm = async event => {
-    event.preventDefault()
-    const {username, password} = this.state
-    const userDetails = {username, password}
+  submitForm =  () => {
+    const {username, email} = this.state
+     const {history} = this.props
+     history.replace('/thankyou')
+    
   }
 
   renderUsernameField = () => {
     const {username} = this.state
+    const inputcolor = username!==''? true:false
     return (
       <>
         <InputLabel htmlFor="username">USERNAME</InputLabel>
@@ -50,6 +54,7 @@ class LoginForm extends Component {
           name="username"
           onChange={this.onChangeHandler}
           placeholder="Username"
+          inputcolor={inputcolor}
         />
       </>
     )
@@ -57,32 +62,36 @@ class LoginForm extends Component {
 
   renderEmailField = () => {
     const {email} = this.state
+    const inputemailcolor = email!==''?true:false
     return (
       <>
-        <InputLabel htmlFor="password">PASSWORD</InputLabel>
+        <InputLabel htmlFor="email">EMAIL ADDRESS</InputLabel>
         <UserInput
           type="email"
-          id="password"
+          id="email"
           value={email}
-          name="password"
+          name="email"
           onChange={this.onChangeHandler}
-          placeholder="Password"
+          placeholder="Type a E-Mail"
+          inputcolor={inputemailcolor}
         />
       </>
     )
   }
   renderPhoneNumberField = () => {
     const {phno} = this.state
+    const inputphnocolor = phno!==''?true:false
     return (
       <>
-        <InputLabel htmlFor="username">PHONE NUMBER</InputLabel>
+        <InputLabel htmlFor="phno">PHONE NUMBER</InputLabel>
         <UserInput
           type="tel"
-          id="username"
+          id="phno"
           value={phno}
-          name="username"
+          name="phno"
           onChange={this.onChangeHandler}
           placeholder="Type a phone number"
+          inputcolor={inputphnocolor}
         />
       </>
     )
@@ -92,16 +101,21 @@ class LoginForm extends Component {
     const {showSubmitError, errorMsg} = this.state
     return (
       <AppContainer>
-        <Paragraph>Please confirm or edit your contact information, so that we can notify you when you are approved for our BETA</Paragraph>
-        <hr/>
-        <FormContainer onSubmit={this.submitForm}>
+        <FiSearch size={28} color='red'/>
+        <Paragraph>Please confirm or edit your contact information, so that we can <br/>notify you when you are approved for our BETA</Paragraph>
+        <Break />
+       
+        
+        <FormContainer >
           <InputContainer>{this.renderUsernameField()}</InputContainer>
           <InputContainer>{this.renderEmailField()}</InputContainer>
           <InputContainer>{this.renderPhoneNumberField()}</InputContainer>
-          <hr/>
-          <LoginButton type="submit">SIGN UP</LoginButton>
+          </FormContainer>
+          <Break />
+          <con>
+          <LoginButton type="button" onClick={this.submitForm}>SIGN UP</LoginButton>
+          </con>
           {showSubmitError && <SubmitError>*{errorMsg}</SubmitError>}
-        </FormContainer>
       </AppContainer>
     )
   }

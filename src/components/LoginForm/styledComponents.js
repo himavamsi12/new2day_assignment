@@ -1,17 +1,19 @@
 import styled from 'styled-components'
 
+
 export const AppContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 `
-export const FormContainer = styled.form`
+export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  
+  margin-bottom:20px;
   width: 350px;
 `
 
@@ -27,15 +29,17 @@ export const InputContainer = styled.div`
 `
 
 export const LoginButton = styled.button`
-  width: 100%;
+  width: 150px;
   background-color: transparent;
   border: solid 2px red;
   border-radius: 5px;
-  font-family: 'Roboto';
+  font-family: 'SF Compact Display', sans-serif;
   font-size: 15px;
   height: 30px;
-  color: #ffffff;
+  color: red;
   margin-top: 20px;
+  margin-left: 70px;
+  cursor:pointer;
 `
 
 export const SubmitError = styled.p`
@@ -45,17 +49,17 @@ export const SubmitError = styled.p`
 `
 
 export const InputLabel = styled.label`
-  font-family: 'Roboto';
+  font-family: 'SF Compact Display', sans-serif;
   font-size: 12px;
   color: #475569;
   font-weight: 500;
 `
 
 export const UserInput = styled.input`
-  font-family: 'Roboto';
+font-family: 'SF Compact Display', sans-serif;
   font-size: 15px;
   color: #ffffff;
-  background-color: #292a2b;
+  background-color: ${(props) => (props.inputcolor?'#292a2b':'#ffffff')};
   outline: none;
   padding: 8px;
   width: 100%;
@@ -83,5 +87,19 @@ export const Paragraph = styled.p`
   text-align: center;
   font-size: 15px;
   color: #292a2b;
-  font-family: 'Roboto'
+  font-family: 'SF Compact Display', sans-serif;
+`
+export const Break = styled.hr`
+
+  color: #d0d1db;
+  width:50%;
+  background-color: #d0d1db;
+  height:1px;
+
+`
+export const con = styled.div`
+
+display: flex;
+justify-content:center;
+
 `
